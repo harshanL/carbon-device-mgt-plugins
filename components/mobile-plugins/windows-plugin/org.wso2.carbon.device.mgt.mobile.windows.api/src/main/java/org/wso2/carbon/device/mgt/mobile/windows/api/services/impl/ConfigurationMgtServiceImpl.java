@@ -34,14 +34,15 @@ import org.wso2.carbon.device.mgt.mobile.windows.api.services.ConfigurationMgtSe
 
 import javax.jws.WebService;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebService
-@Produces({"application/json", "application/xml"})
-@Consumes({"application/json", "application/xml"})
-@Path("/")
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Path("/configuration")
 public class ConfigurationMgtServiceImpl implements ConfigurationMgtService {
 
     private static Log log = LogFactory.getLog(

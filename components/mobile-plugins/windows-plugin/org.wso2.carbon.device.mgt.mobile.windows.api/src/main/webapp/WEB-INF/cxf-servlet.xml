@@ -33,12 +33,7 @@
     <jaxrs:server id="DiscoveryService_rest" address="/discovery/get">
         <jaxrs:serviceBeans>
             <ref bean="discoveryService"/>
-            <ref bean="swaggerResource"/>
         </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <ref bean="jsonProvider"/>
-            <ref bean="swaggerWriter"/>
-        </jaxrs:providers>
     </jaxrs:server>
 
     <!--Discovery Service POST Endpoint-->
@@ -117,22 +112,11 @@
         </jaxrs:providers>
     </jaxrs:server>
 
-    <!--Endpoint for UI admin operations-->
-    <jaxrs:server id="adminoperations" address="/windows">
-        <jaxrs:serviceBeans>
-            <ref bean="deviceMgtAdminService"/>
-            <ref bean="swaggerResource"/>
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <ref bean="jsonProvider"/>
-            <ref bean="swaggerWriter"/>
-        </jaxrs:providers>
-    </jaxrs:server>
-
-    <!-- Endpoint for Configurations -->
-    <jaxrs:server id="configurationService" address="/configuration">
+    <!--Endpoint for UI admin operations and configurations-->
+    <jaxrs:server id="services" address="/">
         <jaxrs:serviceBeans>
             <ref bean="configurationMgtService"/>
+            <ref bean="deviceMgtAdminService"/>
             <ref bean="swaggerResource"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
@@ -140,6 +124,10 @@
             <ref bean="errorHandler"/>
             <ref bean="swaggerWriter"/>
         </jaxrs:providers>
+        <jaxrs:properties>
+            <!-- This is added to catch interceptor level exceptions in GlobalThrowableMapper. -->
+            <entry key="map.cxf.interceptor.fault" value="true" />
+        </jaxrs:properties>
     </jaxrs:server>
 
     <bean id="bstProviderService"

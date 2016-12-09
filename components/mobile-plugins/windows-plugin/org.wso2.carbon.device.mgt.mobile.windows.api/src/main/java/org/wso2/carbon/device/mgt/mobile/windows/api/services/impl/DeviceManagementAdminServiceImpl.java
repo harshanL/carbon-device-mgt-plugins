@@ -35,17 +35,14 @@ import org.wso2.carbon.device.mgt.mobile.windows.api.common.util.Message;
 import org.wso2.carbon.device.mgt.mobile.windows.api.common.util.WindowsAPIUtils;
 import org.wso2.carbon.device.mgt.mobile.windows.api.services.DeviceManagementAdminService;
 
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
- * Implementation class of operations interface. Each method in this class receives the operations comes via UI
- * and persists those in the correct format.
- */
+@Path("/admin/devices")
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class DeviceManagementAdminServiceImpl implements DeviceManagementAdminService {
 
     private static Log log = LogFactory.getLog(OperationImpl.class);
@@ -102,7 +99,7 @@ public class DeviceManagementAdminServiceImpl implements DeviceManagementAdminSe
      * @throws WindowsDeviceEnrolmentException
      */
     @POST
-    @Path("/disenroll")
+    @Path("/disenroll-devices")
     public Response disenroll(@HeaderParam("Accept") String acceptHeader, List<String> deviceIDs)
             throws WindowsDeviceEnrolmentException {
 
@@ -143,7 +140,7 @@ public class DeviceManagementAdminServiceImpl implements DeviceManagementAdminSe
      * @throws WindowsDeviceEnrolmentException
      */
     @POST
-    @Path("/wipe-data")
+    @Path("/wipe-devices")
     public Response wipe(@HeaderParam("Accept") String acceptHeader, List<String> deviceids)
             throws WindowsDeviceEnrolmentException {
 
@@ -186,7 +183,7 @@ public class DeviceManagementAdminServiceImpl implements DeviceManagementAdminSe
      * @throws WindowsDeviceEnrolmentException
      */
     @POST
-    @Path("/ring-device")
+    @Path("/ring-devices")
     public Response ring(@HeaderParam("Accept") String acceptHeader, List<String> deviceIDs)
             throws WindowsDeviceEnrolmentException {
 
@@ -234,7 +231,7 @@ public class DeviceManagementAdminServiceImpl implements DeviceManagementAdminSe
      * @throws WindowsDeviceEnrolmentException
      */
     @POST
-    @Path("/lock-reset")
+    @Path("/lock-reset-devices")
     public Response lockReset(@HeaderParam("Accept") String acceptHeader, List<String> deviceIDs)
             throws WindowsDeviceEnrolmentException {
 
